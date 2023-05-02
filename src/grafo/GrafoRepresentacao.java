@@ -1,5 +1,13 @@
 package grafo;
-/**********************************k*/
+/**********************************
+ * Aluno: Fernando Rodrigo Pinheiro de Sousa
+ * Descrição:
+ * Representações de Grafos por meio de Listas e Matrizes de Adjacências;
+ * retorna o número de vértices; 
+ * retorna o número de arestas; 
+ * Adiciona arestas;
+ * retorna arestas adjacentes.
+ **********************************/
 import java.util.ArrayList;
 import java.util.HashMap;
 
