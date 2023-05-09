@@ -16,6 +16,11 @@ public class BuscaEmProfundidade {
 		descoberta = new int[g.numVertices()];
 		fim = new int[g.numVertices()];
 		cor = new String [g.numVertices()];
+		
+		for(int i = 0; i < cor.length; i++) {
+			cor[i] = "BRANCO";
+		}
+		
 		dfs(g, v);
 	}
 
