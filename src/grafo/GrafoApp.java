@@ -1,6 +1,6 @@
 package grafo;
 
-public class Grafo {
+public class GrafoApp {
 
 	public static void main(String[] args) {
 		
