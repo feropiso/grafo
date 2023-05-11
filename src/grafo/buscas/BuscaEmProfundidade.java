@@ -6,7 +6,7 @@ import grafos.Vertice;
 public class BuscaEmProfundidade {
 	
 	private int [] descoberta;
-	private int [] fim;
+	private int [] finalizacao;
 	private String [] cor;
 	private int tempo;
 	
@@ -14,7 +14,7 @@ public class BuscaEmProfundidade {
 		
 		tempo = 0;
 		descoberta = new int[g.numVertices()];
-		fim = new int[g.numVertices()];
+		finalizacao = new int[g.numVertices()];
 		cor = new String [g.numVertices()];
 		
 		for(int i = 0; i < cor.length; i++) {
@@ -36,12 +36,13 @@ public class BuscaEmProfundidade {
 		
 		cor[v] = "PRETO";
 		tempo += tempo;
-		fim[v] = tempo;
+		finalizacao[v] = tempo;
 	}
 	
 	public String marcado(int w) {
 		return cor[w];
 	}
 	
+
 
 }
