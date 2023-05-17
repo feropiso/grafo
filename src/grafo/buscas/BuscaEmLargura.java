@@ -7,21 +7,25 @@ import grafos.Vertice;
 
 
 public class BuscaEmLargura {
-		
+	
 	private String [] cor;
-	private int [] antecessor;
+	private Vertice [] antecessor;
+	private int [] distancia;
 
 	public BuscaEmLargura(Grafo g, int v) {
 		
 		this.cor = new String[g.numVertices()];
-		this.antecessor = new int[g.numVertices()];
+		this.antecessor = new Vertice[g.numVertices()];
+		this.distancia = new int[g.numVertices()];
 		
 		for(int i = 0; i < cor.length; i++) {
-			antecessor[i] = 0;
+			distancia[i] = Integer.MAX_VALUE;
+			antecessor[i] = null;
 			cor[i] = "BRANCO";
 		}
 		
 		bfs(g, v);
+		exibeDistancias(g);
 	}
 
 	private void bfs(Grafo g, int v) {
@@ -29,25 +33,29 @@ public class BuscaEmLargura {
 		Queue<Integer> fila = new LinkedList<Integer>();
 		
 		cor[v] = "CINZA";
-		
+		distancia[v] = 0;
+		antecessor[v] = null;
 		fila.add(v);
 		
-		while(!fila.isEmpty()) {
+		
+		while(!fila.isEmpty()) {			
 			
 			//retira do topo da fila
-			int ver = fila.poll();
+			int u = fila.poll();
 			
-			for(Vertice vertice: g.listaAdj(ver)) {
+			
+			for(Vertice vertice: g.listaAdj(u)) {
 				
 				if(cor[vertice.getRotulo()] == "BRANCO" ) {
-					cor[vertice.getRotulo()] = "CINZA";
-					antecessor[vertice.getRotulo()] = ver;
-					fila.add(vertice.getRotulo());
 					
+					cor[vertice.getRotulo()] = "CINZA";
+					antecessor[vertice.getRotulo()] = vertice;
+					fila.add(vertice.getRotulo());
+					distancia[vertice.getRotulo()] = distancia[u] + 1;					
 				}
 			}
 			
-			cor[ver] = "PRETO";
+			cor[u] = "PRETO";
 		}		
 	}
 	
@@ -55,6 +63,18 @@ public class BuscaEmLargura {
 		return cor[w];
 	}
 	
-	
 
+	private void exibeDistancias(Grafo g) {
+		
+		int cont = 0;
+		
+		System.out.println("");
+		
+		for(Vertice v: g.getVertices()) {
+			System.out.println(v.getRotulo()+" => Distancia: "+distancia[cont]);
+			cont++;
+		}
+	}
+	
+	
 }
