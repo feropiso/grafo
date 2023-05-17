@@ -4,7 +4,7 @@ import grafos.Grafo;
 import grafos.Vertice;
 
 public class BuscaEmProfundidade {
-	
+
 	private int [] descoberta;
 	private int [] finalizacao;
 	private String [] cor;
@@ -22,6 +22,7 @@ public class BuscaEmProfundidade {
 		}
 		
 		dfs(g, v);
+		exibeTempos(g);
 	}
 
 	private void dfs(Grafo g, int v) {
@@ -35,7 +36,7 @@ public class BuscaEmProfundidade {
 		}
 		
 		cor[v] = "PRETO";
-		tempo += tempo;
+		tempo++;
 		finalizacao[v] = tempo;
 	}
 	
@@ -43,6 +44,17 @@ public class BuscaEmProfundidade {
 		return cor[w];
 	}
 	
+	private void exibeTempos(Grafo g) {
+		
+		int cont = 0;
+		
+		System.out.println("");
+		
+		for(Vertice v: g.getVertices()) {
+			System.out.println(v.getRotulo()+" => Descoberta: "+descoberta[cont]+" => Finalizacao: "+finalizacao[cont]);
+			cont++;
+		}
+	}
 
 
 }
