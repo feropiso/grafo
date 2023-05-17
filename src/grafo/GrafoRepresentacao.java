@@ -20,7 +20,7 @@ public class GrafoRepresentacao {
 	private ArrayList<Vertice> listaVertice;
 	private int matriz_adj[][];
 	private boolean ehDirecioanado;
-	
+	private Grafo grafo;
 	
 	public GrafoRepresentacao() {
 		
@@ -29,13 +29,24 @@ public class GrafoRepresentacao {
 		this.listaVertice = new ArrayList<Vertice>();
 		this.matriz_adj = new int [10][10];
 		this.ehDirecioanado = false;
-		
+				
 		for(int i = 0; i < 10; i++)
 			for(int j = 0; j < 10; j++)
 				matriz_adj[i][j] = 0;
+		
+		iniciaGrafo();
+		
+		this.grafo = new Grafo(listaVertice, listaAresta);
 	}
 	
-	public void direcao() {
+	private void iniciaGrafo() {
+		
+		direcao();
+		recebeVertices();
+		criaArestas();
+	}
+
+	private void direcao() {
 		
 		int resp = JOptionPane.showConfirmDialog(null,
 				"O grafo e direcionado?", "Grafos", JOptionPane.YES_NO_OPTION);
@@ -45,7 +56,7 @@ public class GrafoRepresentacao {
 			
 	}
 
-	public void recebeVertices() {
+	private void recebeVertices() {
 		
 		int rotulo = 0;
 		int num_vertices = 0;
@@ -64,7 +75,7 @@ public class GrafoRepresentacao {
 		
 	}
 	
-	public void criaArestas() {
+	private void criaArestas() {
 		
 		if(ehDirecioanado) {
 			
@@ -130,8 +141,7 @@ public class GrafoRepresentacao {
 			
 			if(v.getRotulo() == rotulo) {
 				return v;
-			}
-			
+			}			
 		}
 		
 		return null;
@@ -197,7 +207,7 @@ public class GrafoRepresentacao {
 		
 	}
 		
-	public ArrayList<Vertice> listaAdj(int vertice){
+	private ArrayList<Vertice> listaAdj(int vertice){
 		
 		ArrayList<Vertice> listaAdj = new ArrayList<Vertice>();
 		
@@ -209,6 +219,10 @@ public class GrafoRepresentacao {
 		}
 		
 		return listaAdj;		
+	}
+
+	public Grafo getGrafo() {
+		return grafo;
 	}
 	
 }
